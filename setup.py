@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='django-securepay',
-    version="1.0.1",
+    version="1.0.2",
     description='Interface with the SecurePay API from Django',
     author='Ionata Web Solutions',
     author_email='webmaster@ionata.com.au',
