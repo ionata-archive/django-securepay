@@ -110,8 +110,8 @@ class CreditCardForm(forms.Form):
     expiry = MonthYearField(required=True, strip_century=True,
         help_text='MM / YY')
 
-    cvv = forms.IntegerField(min_value=0, max_value=9999,
-        help_text="This is a three or four digit number, found on the back of"
+    cvv = forms.IntegerField(min_value=0, max_value=9999, label="CVV",
+        help_text="This is a three or four digit number, found on the back of "
             "your card")
 
     def clean_number(self):
