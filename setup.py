@@ -19,6 +19,7 @@ setup(
         'Django>=1.4.1',
         'requests>=0.13.0',
         'django-admin-extensions>=0.1.1',
+        'django-picklefield==0.2.1',
     ],
     package_data={},
     classifiers=[
