@@ -45,18 +45,18 @@ sample_credit_card_data = {
 class SecurePayFilter(Filter):
     def filter(self, record):
         # Do not obfuscate things in debug mode
-        if not settings.DEBUG:
-            return True
+        censor = not settings.DEBUG
 
         # Escape the message and its args, if any of them are XML
-        record.msg = self.filter_value(record.msg)
-        record.args = tuple([self.filter_value(x) for x in record.args])
+        record.msg = self.filter_value(record.msg, censor)
+        record.args = tuple(self.filter_value(x, censor)
+            for x in record.args)
         return True
 
-    def filter_value(self, value):
+    def filter_value(self, value, censor):
         if not isinstance(value, ELEMENT_CLASS):
             return value
 
-        xml = value
-        remove_sensitive_info(xml)
-        return ElementTree.tostring(xml)
+        if censor:
+            remove_sensitive_info(value)
+        return ElementTree.tostring(value)
