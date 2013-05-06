@@ -183,10 +183,10 @@ class TransactionManager(models.Manager):
         Parameters:
             reference_transaction - The preauthorize transaction to complete
             amount - The amount to take. The amount can be less than or equal
-                to the preauthorised amount, and there can be multiple
-                completions on the one preauthorize transaction; as long as the
-                total amount taken does not excede the original amount.
-                Defaults to the amount of the reference_transaction.
+                to the preauthorised amount. If the amount taken is less than
+                the amount reserverd via the preauth, the remainder is returned
+                to the customers card.  Defaults to the amount of the
+                reference_transaction.
             data - Any extra data to store with this transaction
 
         Returns:
